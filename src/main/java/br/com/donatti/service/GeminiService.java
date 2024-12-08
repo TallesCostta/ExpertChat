@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,10 +29,6 @@ import lombok.Getter;
 @Service
 public class GeminiService
 {
-    private String geminiApiKey = System.getenv("${GEMINI_API_KEY}");
-    
-    private String geminiURL = System.getenv("${GEMINI_URL}");
-
     private List<String> lstHistorico = new ArrayList<>();
 
     /**
@@ -47,6 +42,16 @@ public class GeminiService
      */
     public String enviarRequisicao(final PromptRequestDTO promptRequestDTO) throws Exception
     {
+        if (StringUtil.isBlank(ConstantsUtils.GEMINI_URL))
+        {
+            throw new IllegalArgumentException("Não foi possível obter a URL da Google Gemini!");
+        }
+        
+        if (StringUtil.isBlank(ConstantsUtils.GEMINI_API_KEY))
+        {
+            throw new IllegalArgumentException("Não foi possível obter a cahev de autenticação da Google Gemini!");
+        }
+        
         // Contexto com base no histórico da conversa
         final String contexto = lstHistorico.stream().collect(Collectors.joining("\n"));
        
@@ -66,9 +71,9 @@ public class GeminiService
                 .append("Pergunta: ").append(promptRequestDTO.getPrompt()).toString();
 
         atualizarHistoricoConversas(promptRequestDTO.getPrompt(), lstHistorico);
-
+        
         var request = HttpRequest.newBuilder()
-                .uri(URI.create(geminiURL + "?alt=sse&key=" + geminiApiKey))
+                .uri(URI.create(ConstantsUtils.GEMINI_URL + "?alt=sse&key=" + ConstantsUtils.GEMINI_API_KEY))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(obterJsonRequest(contextPrompt)))
                 .build();
