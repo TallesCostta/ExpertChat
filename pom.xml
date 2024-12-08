@@ -12,7 +12,7 @@
 	<groupId>br.com.donatti</groupId>
 	<artifactId>expertChat</artifactId>
 	<version>0.0.1</version>
-	<name>expertChat</name>
+	<name>expertChat-ms</name>
 	<description>Criador de ChatBot especialista com Gemini</description>
 	<url />
 	<licenses>
