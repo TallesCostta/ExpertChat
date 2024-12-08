@@ -9,7 +9,7 @@ public final class ConstantsUtils
     
     public static final String PADRAO_RESPOSTA = "\"text\"\\s*:\\s*\"([^\"]+)\"";
     
-    public static final String URL_EXPERT_CHAT = "https://low-demetra-donatti-21733ba9.koyeb.app/expertchat";
+    public static final String URL_EXPERT_CHAT = "https://jovial-scone-0da17a.netlify.app";
     
     public static final String URL_EXPERT_CHAT_LOCALHOST = "http://localhost:5173";
 }
