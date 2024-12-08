@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,8 +36,7 @@ public class GeminiService
     private List<String> lstHistorico = new ArrayList<>();
 
     /**
-     * Envia uma requisição ao Gemini com o prompt contextualizado com base em um
-     * histórico.
+     * Envia uma requisição ao Gemini com o prompt contextualizado com base em um histórico.
      * 
      * @author Tales Paiva [tallescosttapaiva@gmail.com] 07/12/2024 - 17:27:35
      * @param promptRequestDTO
