@@ -10,10 +10,10 @@
 		<relativePath />
 	</parent>
 	<groupId>br.com.donatti</groupId>
-	<artifactId>expertChat</artifactId>
+	<artifactId>expertChat-ms</artifactId>
 	<version>0.0.1</version>
 	<name>expertChat-ms</name>
-	<description>Criador de ChatBot especialista com Gemini</description>
+	<description>Microserviços para criar e gerenciar chatbots especializados, integrados ao modelo Gemini</description>
 	<url />
 	<licenses>
 		<license />
