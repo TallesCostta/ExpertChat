@@ -1,5 +1,6 @@
 package br.com.donatti.service;
 
+import java.io.FileInputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ import br.com.donatti.utils.CollectionUtil;
 import br.com.donatti.utils.ConstantsUtils;
 import br.com.donatti.utils.GeminiUtils;
 import br.com.donatti.utils.StringUtil;
+import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 
 /**
@@ -29,7 +32,29 @@ import lombok.Getter;
 @Service
 public class GeminiService
 {
+    private String GEMINI_URL;
+    
+    private String GEMINI_API_KEY;
+    
     private List<String> lstHistorico = new ArrayList<>();
+    
+    @PostConstruct
+    void inicializarCredenciaisGemini()
+    {
+        try
+        {
+            Properties properties = new Properties();
+            
+            properties.load(new FileInputStream("gemini.properties"));
+            
+            this.GEMINI_URL = properties.getProperty("GEMINI_URL");
+            this.GEMINI_API_KEY = properties.getProperty("GEMINI_API_KEY");
+        }
+        catch (Exception e)
+        {
+            throw new IllegalArgumentException("Ocorreu um erro ao carregar as credenciais da Google Gemini!");
+        }
+    }
 
     /**
      * Envia uma requisição ao Gemini com o prompt contextualizado com base em um histórico.
@@ -41,12 +66,12 @@ public class GeminiService
      */
     public String enviarRequisicao(final PromptRequestDTO promptRequestDTO) throws Exception
     {
-        if (StringUtil.isBlank(ConstantsUtils.GEMINI_URL))
+        if (StringUtil.isBlank(this.GEMINI_URL))
         {
             throw new IllegalArgumentException("Não foi possível obter a URL da Google Gemini!");
         }
         
-        if (StringUtil.isBlank(ConstantsUtils.GEMINI_API_KEY))
+        if (StringUtil.isBlank(this.GEMINI_API_KEY))
         {
             throw new IllegalArgumentException("Não foi possível obter a cahev de autenticação da Google Gemini!");
         }
@@ -72,7 +97,7 @@ public class GeminiService
         atualizarHistoricoConversas(promptRequestDTO.getPrompt(), lstHistorico);
         
         var request = HttpRequest.newBuilder()
-                .uri(URI.create(ConstantsUtils.GEMINI_URL + "?alt=sse&key=" + ConstantsUtils.GEMINI_API_KEY))
+                .uri(URI.create(this.GEMINI_URL + "?alt=sse&key=" + this.GEMINI_API_KEY))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(obterJsonRequest(contextPrompt)))
                 .build();
