@@ -30,11 +30,9 @@ import lombok.Getter;
 @Service
 public class GeminiService
 {
-    @Value("${GEMINI_API_KEY}")
-    private String geminiApiKey;
+    private String geminiApiKey = System.getenv("${GEMINI_API_KEY}");
     
-    @Value("${GEMINI_URL}")
-    private String geminiURL;
+    private String geminiURL = System.getenv("${GEMINI_URL}");
 
     private List<String> lstHistorico = new ArrayList<>();
 
