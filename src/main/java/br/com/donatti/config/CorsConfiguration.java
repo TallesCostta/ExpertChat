@@ -4,13 +4,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import br.com.donatti.utils.ConstantsUtils;
-
 /**
  * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 01:28:14
  */
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class CorsConfiguration implements WebMvcConfigurer {
 
     /**
      * 
@@ -22,8 +20,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins(ConstantsUtils.URL_EXPERT_CHAT, ConstantsUtils.URL_EXPERT_CHAT_LOCALHOST)
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedOrigins("*")
+                .allowedMethods("*")
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }
