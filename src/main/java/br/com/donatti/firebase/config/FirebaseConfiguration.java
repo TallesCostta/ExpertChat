@@ -1,8 +1,10 @@
 package br.com.donatti.firebase.config;
 
-import java.io.FileInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Base64;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,15 +19,17 @@ import com.google.firebase.database.FirebaseDatabase;
 @Configuration
 class FirebaseConfiguration
 {
+    @Value("${firebase.service.account.key}")
+    private String serviceAccountKey;
+    
     @Bean
     FirebaseDatabase firebaseDatabase() throws IOException
     {
-        FileInputStream serviceAccount = new FileInputStream("src/main/resources/serviceAccountKey.json");
-
         FirebaseOptions options = FirebaseOptions.builder()
-                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .setCredentials(GoogleCredentials.fromStream(new ByteArrayInputStream(Base64.getDecoder().decode(serviceAccountKey))))
                 .setDatabaseUrl("https://expert-chat-3b94e-default-rtdb.firebaseio.com")
                 .build();
+
 
         if (FirebaseApp.getApps().isEmpty())
         {
