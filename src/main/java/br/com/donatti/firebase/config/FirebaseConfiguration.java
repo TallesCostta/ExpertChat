@@ -13,9 +13,12 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 17:01:56
  */
+@Slf4j
 @Configuration
 class FirebaseConfiguration
 {
@@ -34,6 +37,8 @@ class FirebaseConfiguration
         if (FirebaseApp.getApps().isEmpty())
         {
             FirebaseApp.initializeApp(options);
+            
+            log.info("🔗 Connected to database [Firebase Realtime Database]");
         }
 
         return FirebaseDatabase.getInstance();
