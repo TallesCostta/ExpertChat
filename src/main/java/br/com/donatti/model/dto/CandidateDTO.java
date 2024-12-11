@@ -1,20 +1,20 @@
-package br.com.donatti.model;
+package br.com.donatti.model.dto;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
  * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 10:25:52
  */
-public class Candidate
+public class CandidateDTO
 {
     @SerializedName("content")
-    private Content content;
+    private ContentDTO content;
 
     /**
      * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 10:26:15
      * @return the content
      */
-    public Content getContent()
+    public ContentDTO getContent()
     {
         return content;
     }
@@ -23,7 +23,7 @@ public class Candidate
      * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 10:26:15
      * @param content the content to set
      */
-    public void setContent(Content content)
+    public void setContent(ContentDTO content)
     {
         this.content = content;
     }

@@ -1,4 +1,4 @@
-package br.com.donatti.utils.enums;
+package br.com.donatti.enums;
 
 /**
  * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 16:00:52

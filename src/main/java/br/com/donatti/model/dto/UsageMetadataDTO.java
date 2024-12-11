@@ -1,11 +1,11 @@
-package br.com.donatti.model;
+package br.com.donatti.model.dto;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
  * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 10:28:14
  */
-public class UsageMetadata
+public class UsageMetadataDTO
 {
     @SerializedName("promptTokenCount")
     private int promptTokenCount;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.donatti.model.PromptRequestDTO;
+import br.com.donatti.model.dto.PromptRequestDTO;
 import br.com.donatti.service.GeminiService;
 import br.com.donatti.utils.LoggerUtil;
 

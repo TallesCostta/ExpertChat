@@ -1,4 +1,4 @@
-package br.com.donatti.model;
+package br.com.donatti.model.dto;
 
 import java.util.List;
 
@@ -10,13 +10,13 @@ import com.google.gson.annotations.SerializedName;
 public class GeminiResponseDTO
 {
     @SerializedName("response")
-    private List<Response> lstResponse;
+    private List<ResponseDTO> lstResponse;
 
     /**
      * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 15:48:47
      * @return the lstResponse
      */
-    public List<Response> getLstResponse()
+    public List<ResponseDTO> getLstResponse()
     {
         return lstResponse;
     }
@@ -25,7 +25,7 @@ public class GeminiResponseDTO
      * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 15:48:47
      * @param lstResponse the lstResponse to set
      */
-    public void setLstResponse(List<Response> lstResponse)
+    public void setLstResponse(List<ResponseDTO> lstResponse)
     {
         this.lstResponse = lstResponse;
     }

@@ -1,4 +1,4 @@
-package br.com.donatti.model;
+package br.com.donatti.model.dto;
 
 import java.util.List;
 
@@ -7,13 +7,13 @@ import com.google.gson.annotations.SerializedName;
 /**
  * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 13:52:17
  */
-public class Data
+public class DataDTO
 {
     @SerializedName("candidates")
-    private List<Candidate> candidates;
+    private List<CandidateDTO> candidates;
 
     @SerializedName("usageMetadata")
-    private UsageMetadata usageMetadata;
+    private UsageMetadataDTO usageMetadata;
 
     @SerializedName("modelVersion")
     private String modelVersion;
@@ -22,7 +22,7 @@ public class Data
      * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 10:25:30
      * @return the candidates
      */
-    public List<Candidate> getCandidates()
+    public List<CandidateDTO> getCandidates()
     {
         return candidates;
     }
@@ -31,7 +31,7 @@ public class Data
      * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 10:25:30
      * @param candidates the candidates to set
      */
-    public void setCandidates(List<Candidate> candidates)
+    public void setCandidates(List<CandidateDTO> candidates)
     {
         this.candidates = candidates;
     }
@@ -40,7 +40,7 @@ public class Data
      * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 10:25:30
      * @return the usageMetadata
      */
-    public UsageMetadata getUsageMetadata()
+    public UsageMetadataDTO getUsageMetadata()
     {
         return usageMetadata;
     }
@@ -49,7 +49,7 @@ public class Data
      * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 10:25:30
      * @param usageMetadata the usageMetadata to set
      */
-    public void setUsageMetadata(UsageMetadata usageMetadata)
+    public void setUsageMetadata(UsageMetadataDTO usageMetadata)
     {
         this.usageMetadata = usageMetadata;
     }

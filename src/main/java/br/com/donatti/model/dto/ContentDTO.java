@@ -1,4 +1,4 @@
-package br.com.donatti.model;
+package br.com.donatti.model.dto;
 
 import java.util.List;
 
@@ -7,10 +7,10 @@ import com.google.gson.annotations.SerializedName;
 /**
  * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 10:26:34
  */
-public class Content
+public class ContentDTO
 {
     @SerializedName("parts")
-    private List<Part> parts;
+    private List<PartDTO> parts;
     
     @SerializedName("role")
     private String role;
@@ -19,7 +19,7 @@ public class Content
      * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 10:26:50
      * @return the parts
      */
-    public List<Part> getParts()
+    public List<PartDTO> getParts()
     {
         return parts;
     }
@@ -28,7 +28,7 @@ public class Content
      * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 10:26:50
      * @param parts the parts to set
      */
-    public void setParts(List<Part> parts)
+    public void setParts(List<PartDTO> parts)
     {
         this.parts = parts;
     }

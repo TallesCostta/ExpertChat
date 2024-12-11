@@ -1,11 +1,11 @@
-package br.com.donatti.model;
+package br.com.donatti.model.dto;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
  * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 10:27:01
  */
-public class Part
+public class PartDTO
 {
     @SerializedName("text")
     private String text;

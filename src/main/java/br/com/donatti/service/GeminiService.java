@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.donatti.model.PromptRequestDTO;
+import br.com.donatti.model.dto.PromptRequestDTO;
 import br.com.donatti.utils.CollectionUtil;
 import br.com.donatti.utils.ConstantsUtils;
 import br.com.donatti.utils.GeminiUtils;
@@ -78,8 +78,6 @@ public class GeminiService
         
         // Contexto com base no histórico da conversa
         final String contexto = lstHistorico.stream().collect(Collectors.joining("\n"));
-       
-        
         
         var contextPrompt = new StringBuilder()
                 .append(StringUtil.isNotBlank(contexto) ? "Esse é o histórico de conversas nesse chat, pode ser útil para obter o contexto para melhor resposta: ".concat(contexto.concat(", "))  : "")
@@ -106,7 +104,7 @@ public class GeminiService
                 .append("Se aplicável, inclua orientações práticas, exemplos ou dicas estruturadas.")
                 .append("Perguntas Fora do Escopo (não relacionadas):")
                 .append("Responda educadamente, informando sua limitação de especialidade.")
-                .append("Modelo de resposta para perguntas fora do escopo:")
+                .append("Modelo de resposta para perguntas fora do escopo (esse é apenas um modelo, você deve gerar a sua resposta):")
                 .append("Desculpe, mas eu sou especialista em ")
                 .append(promptRequestDTO.getCategoria())
                 .append("com ênfase em ")

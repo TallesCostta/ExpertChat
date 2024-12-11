@@ -1,4 +1,4 @@
-package br.com.donatti.model;
+package br.com.donatti.model.dto;
 
 /**
  * @author Tales Paiva [tallescosttapaiva@gmail.com] 07/12/2024 - 17:09:58

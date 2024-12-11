@@ -1,4 +1,4 @@
-package br.com.donatti.config;
+package br.com.donatti.cors.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

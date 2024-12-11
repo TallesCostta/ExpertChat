@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 
+import br.com.donatti.enums.EnumResponseStatus;
 import br.com.donatti.exception.RequestException;
-import br.com.donatti.model.GeminiResponseDTO;
-import br.com.donatti.utils.enums.EnumResponseStatus;
+import br.com.donatti.model.dto.GeminiResponseDTO;
 
 /**
  * @author Tales Paiva [tallescosttapaiva@gmail.com] 07/12/2024 - 18:45:42
