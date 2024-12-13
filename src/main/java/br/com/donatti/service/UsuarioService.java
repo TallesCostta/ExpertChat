@@ -70,6 +70,7 @@ public class UsuarioService
         BtpUsuario btpUsuarioPersist = new BtpUsuario();
         
         btpUsuarioPersist.setUsuDscNome(btpUsuario.getUsuDscNome().trim().toUpperCase());
+        btpUsuarioPersist.setUsuDscEmail(btpUsuario.getUsuDscEmail().trim());
         btpUsuarioPersist.setUsuDscLogin(btpUsuario.getUsuDscLogin().trim());
         btpUsuarioPersist.setUsuDscSenha(passwordEncoder.encode(btpUsuario.getUsuDscSenha().trim()));
         btpUsuarioPersist.setUsuDscTelefone(btpUsuario.getUsuDscTelefone().trim());

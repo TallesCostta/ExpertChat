@@ -17,6 +17,8 @@ import lombok.Setter;
 public class BtpUsuario extends BtpPadrao
 {   
     private String usuDscNome;
+    
+    private String usuDscEmail;
 
     private String usuDscLogin;
     
