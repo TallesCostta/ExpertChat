@@ -43,9 +43,7 @@ class SecurityConfig
     {
         httpSecurity.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(HttpMethod.POST, "/expertchat/login").permitAll()
-                .requestMatchers(HttpMethod.POST, "/expertchat/perfil-acesso/cadastro").permitAll()
                 .requestMatchers(HttpMethod.POST, "/expertchat/usuario/cadastro").permitAll()
-                .requestMatchers(HttpMethod.GET, "/expertchat/usuario/lista-todos").permitAll()
                 .anyRequest().authenticated())
             .csrf(csrf -> csrf.disable())
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))

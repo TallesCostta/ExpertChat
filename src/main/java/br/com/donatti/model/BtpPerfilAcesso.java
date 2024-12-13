@@ -1,7 +1,5 @@
 package br.com.donatti.model;
 
-import com.google.firebase.database.IgnoreExtraProperties;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,11 +12,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@IgnoreExtraProperties
 public class BtpPerfilAcesso extends BtpPadrao
-{
-    private Long peaCodPerfilAcesso;
-    
+{   
     private String peaDscNome;
     
     private Boolean peaFlgAtivo;

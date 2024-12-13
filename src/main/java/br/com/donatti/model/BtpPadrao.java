@@ -1,27 +1,26 @@
 package br.com.donatti.model;
 
+import java.util.UUID;
+
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 17:47:11
+ * @author Tales Paiva [tallescosttapaiva@gmail.com] 12/12/2024 - 22:43:34
  */
 @Getter
 @Setter
 public abstract class BtpPadrao
 {
-    private String path;
-
     private String id;
-
+    
     /**
      * 
-     * @author Tales Paiva [tallescosttapaiva@gmail.com] 08/12/2024 - 17:54:08
-     *
+     * @author Tales Paiva [tallescosttapaiva@gmail.com] 12/12/2024 - 22:48:27
      */
-    public BtpPadrao()
-    {
-        this.path = this.getClass().getSimpleName();
+    public BtpPadrao() {
+        if (id == null) {
+            id = String.valueOf(UUID.randomUUID());
+        }
     }
-
 }

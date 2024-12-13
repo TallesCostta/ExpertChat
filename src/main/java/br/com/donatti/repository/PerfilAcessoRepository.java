@@ -1,6 +1,5 @@
 package br.com.donatti.repository;
 
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import br.com.donatti.service.PerfilAcessoService;
  * @author Tales Paiva [tallescosttapaiva@gmail.com] 10/12/2024 - 01:37:47
  */
 @Repository
-public class PerfilAcessoRepository extends FirebaseRepository
+public class PerfilAcessoRepository extends FirebaseRepository<BtpPerfilAcesso>
 {
     @Autowired
     private PerfilAcessoService perfilAcessoService;
@@ -26,11 +25,9 @@ public class PerfilAcessoRepository extends FirebaseRepository
      * @throws ExecutionException 
      * @throws InterruptedException 
      */
-    public void salvarPerfilAcesso(final BtpPerfilAcesso btpPerfilAcesso) throws InterruptedException, ExecutionException
+    public BtpPerfilAcesso salvarPerfilAcesso(final BtpPerfilAcesso btpPerfilAcesso) throws InterruptedException, ExecutionException
     {
-        final List<BtpPerfilAcesso> lsBtpPerfilAcesso = buscarTodos(btpPerfilAcesso.getPath(), BtpPerfilAcesso.class);
-        
-        salvar(btpPerfilAcesso.getPath(), perfilAcessoService.mapperPerfilAcesso(btpPerfilAcesso, lsBtpPerfilAcesso), null);
+        return salvar(perfilAcessoService.mapperPerfilAcesso(btpPerfilAcesso));
     }
     
 }

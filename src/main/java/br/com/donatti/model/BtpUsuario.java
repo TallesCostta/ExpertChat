@@ -28,6 +28,6 @@ public class BtpUsuario extends BtpPadrao
     
     private Boolean usuFlgAceitePoliticaPrivacidade;
 
-    private List<BtpPerfilAcesso> lstBtpPerfisAcesso;
+    private List<String> roles;
     
 }

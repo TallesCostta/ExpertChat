@@ -16,7 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @IgnoreExtraProperties
 public class BtpConversa extends BtpPadrao
-{
+{   
     private String conDscTitulo;
     
     private String conDatConversa;
@@ -28,5 +28,7 @@ public class BtpConversa extends BtpPadrao
     private BtpResposta btpResposta;
 
     private BtpChatEspecialista btpChatEspecialista;
+    
+    private Boolean conFldArquivada;
     
 }

@@ -2,16 +2,26 @@
   {
     "name": "jwt.public.key",
     "type": "java.lang.String",
-    "description": "A description for 'jwt.public.key'"
+    "description": "Chave publica utilizada na criptografia assimetrica do token JWT"
   },
   {
     "name": "jwt.private.key",
     "type": "java.lang.String",
-    "description": "A description for 'jwt.private.key'"
+    "description": "Chave privada utilizada na criptografia assimetrica do token JWT"
   },
   {
-    "name": "firebase.service.account.key",
+    "name": "firebase.service.account",
     "type": "java.lang.String",
-    "description": "A description for 'firebase.service.account.key'"
+    "description": "Credenciais usadas para criar conexão com a base de dados do banco noSQl 'Firebase Realtime Database'"
+  },
+  {
+    "name": "google.gemini.url",
+    "type": "java.lang.String",
+    "description": "Link de conexão ao modelo de linguagem Google Gemini"
+  },
+  {
+    "name": "google.gemini.key",
+    "type": "java.lang.String",
+    "description": "Chave para autenticação com modelo de linguagem Google Gemini"
   }
 ]}

@@ -18,7 +18,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @IgnoreExtraProperties
 public class BtpResposta extends BtpPadrao
-{
+{   
     private String resDscResposta;
 
     private Date resDatResposta;

@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 class FirebaseConfiguration
 {
-    @Value("${firebase.service.account.key}")
+    @Value("${firebase.service.account}")
     private String serviceAccountKey;
     
     @Bean
@@ -32,8 +32,7 @@ class FirebaseConfiguration
                 .setCredentials(GoogleCredentials.fromStream(new ByteArrayInputStream(Base64.getDecoder().decode(serviceAccountKey))))
                 .setDatabaseUrl("https://expert-chat-3b94e-default-rtdb.firebaseio.com")
                 .build();
-
-
+        
         if (FirebaseApp.getApps().isEmpty())
         {
             FirebaseApp.initializeApp(options);

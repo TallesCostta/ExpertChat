@@ -1,7 +1,5 @@
 package br.com.donatti.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,17 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.donatti.model.dto.PromptRequestDTO;
 import br.com.donatti.service.GeminiService;
 import br.com.donatti.utils.LoggerUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
  * @author Tales Paiva [tallescosttapaiva@gmail.com] 07/12/2024 - 16:46:47
  */
+@Slf4j
 @RestController
 @RequestMapping("expertchat/gemini")
 public class GeminiController
-{
-    private static final Logger log = LoggerFactory.getLogger(GeminiController.class);
-    
+{   
     @Autowired
     private GeminiService geminiService;
 
