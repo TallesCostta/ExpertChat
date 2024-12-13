@@ -8,6 +8,8 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Value;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -50,17 +52,23 @@ class SecurityConfig
     private RSAPrivateKey privateKey;
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception
-    {
+    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/expertchat/login")
-                        .permitAll().requestMatchers(HttpMethod.POST, "/expertchat/usuario/cadastro").permitAll()
-                        .anyRequest().authenticated())
-                .csrf(csrf -> csrf.disable()).oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
+                .cors(withDefaults())
+                .authorizeHttpRequests(authorizeRequests ->
+                        authorizeRequests
+                                .requestMatchers(HttpMethod.POST, "/expertchat/login").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/expertchat/usuario/cadastro").permitAll()
+                                .anyRequest()
+                                .authenticated()
+                )
+                .csrf(csrf -> csrf.disable())
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return httpSecurity.build();
     }
+
 
     @Bean
     JwtDecoder jwtDecoder()
