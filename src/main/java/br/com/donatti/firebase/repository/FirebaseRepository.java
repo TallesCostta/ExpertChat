@@ -1,6 +1,7 @@
 package br.com.donatti.firebase.repository;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -130,20 +131,40 @@ public abstract class FirebaseRepository<T>
 
         String id = obterId(entidade);
 
-        if (StringUtil.isNotBlank(id))
+        if (StringUtil.isBlank(id))
         {
-            reference = reference.child(id);
+            throw new IllegalArgumentException("O ID da entidade não pode ser nulo ou vazio.");
         }
 
-        reference.setValue(entidade, (databaseError, databaseReference) ->
+        reference.child(id).addListenerForSingleValueEvent(new ValueEventListener()
         {
-            if (databaseError != null)
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                if (dataSnapshot.exists())
+                {
+                    future.completeExceptionally(new IllegalStateException("Já existe um registro com o ID fornecido."));
+                }
+                else
+                {
+                    reference.child(id).setValue(entidade, (databaseError, databaseReference) ->
+                    {
+                        if (databaseError != null)
+                        {
+                            future.completeExceptionally(databaseError.toException());
+                        }
+                        else
+                        {
+                            future.complete(entidade);
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
             {
                 future.completeExceptionally(databaseError.toException());
-            }
-            else
-            {
-                future.complete(entidade);
             }
         });
 
@@ -188,7 +209,7 @@ public abstract class FirebaseRepository<T>
      * @param entityClass
      * @return List<T>
      */
-    public List<T> buscarPorParametro(final Map<String, String> mapParam, final Class<T> entityClass)
+    public List<T> consultarPorParametro(final Map<String, String> mapParam, final Class<T> entityClass)
     {
         CompletableFuture<List<T>> future = new CompletableFuture<>();
         
@@ -333,4 +354,62 @@ public abstract class FirebaseRepository<T>
         return false;
     }
     
+    /**
+     * 
+     * @author Tales Paiva [tallescosttapaiva@gmail.com] 14/12/2024 - 13:26:39
+     * @param entidade
+     * @param mapParam
+     * @return
+     */
+    public T atualizar(T entidade, final Map<String, Object> mapParam)
+    {
+        CompletableFuture<T> future = new CompletableFuture<>();
+
+        try
+        {
+            final String id = (String) entidade.getClass().getMethod("getId").invoke(entidade);
+
+            DatabaseReference entityRef = getDatabaseReference().child(id);
+
+            entityRef.addListenerForSingleValueEvent(new ValueEventListener()
+            {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot)
+                {
+                    if (dataSnapshot.exists())
+                    {
+                        entityRef.updateChildren(mapParam, (databaseError, databaseReference) ->
+                        {
+                            if (databaseError != null)
+                            {
+                                future.completeExceptionally(databaseError.toException());
+                            }
+                            else
+                            {
+                                future.complete(entidade);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        future.completeExceptionally( new IllegalArgumentException("O ID fornecido não existe no banco de dados."));
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+                    future.completeExceptionally(databaseError.toException());
+                }
+            });
+
+        }
+        catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e)
+        {
+            future.completeExceptionally(e);
+        }
+
+        return future.join();
+    }
+
 }

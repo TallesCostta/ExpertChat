@@ -23,4 +23,5 @@ public class BtpResposta extends BtpPadrao
 
     private Date resDatResposta;
     
+    private String idBotEspecialista;
 }

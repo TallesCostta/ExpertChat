@@ -15,14 +15,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @IgnoreExtraProperties
-public class BtpChatEspecialista extends BtpPadrao
+public class BtpBotEspecialista extends BtpPadrao
 {
-    private String cheDscNome;
+    private String boeDscNome;
 
-    private String cheDscCategoria;
+    private String boeDscCategoria;
 
-    private String cheDscEspecialidade;
+    private String boeDscEspecialidade;
     
-    private BtpUsuario btpUsuario;
+    private String botDatCadastro;
     
+    private String idUsuario;
 }

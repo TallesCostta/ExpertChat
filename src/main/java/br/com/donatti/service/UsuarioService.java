@@ -115,7 +115,7 @@ public class UsuarioService
 
         List<BtpUsuario> lstBtpUsuario = new ArrayList<>();
 
-        lstBtpUsuario = usuarioRepository.buscarPorParametro(mapParam, BtpUsuario.class);
+        lstBtpUsuario = usuarioRepository.consultarPorParametro(mapParam, BtpUsuario.class);
 
         if (CollectionUtil.isEmpty(lstBtpUsuario))
         {
@@ -140,7 +140,7 @@ public class UsuarioService
             
             mapParamBusca.put("id", role);
 
-            List<BtpPerfilAcesso> lstBtpPerfilAcesso = perfilAcessoRepository.buscarPorParametro(mapParamBusca, BtpPerfilAcesso.class);
+            List<BtpPerfilAcesso> lstBtpPerfilAcesso = perfilAcessoRepository.consultarPorParametro(mapParamBusca, BtpPerfilAcesso.class);
 
             return CollectionUtil.isNotEmpty(lstBtpPerfilAcesso)
                     ? lstBtpPerfilAcesso.stream().map(BtpPerfilAcesso::getPeaDscNome).collect(Collectors.joining(" "))

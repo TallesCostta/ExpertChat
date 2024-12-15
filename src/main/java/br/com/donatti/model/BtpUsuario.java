@@ -32,4 +32,5 @@ public class BtpUsuario extends BtpPadrao
 
     private List<String> roles;
     
+    private List<String> bots;
 }

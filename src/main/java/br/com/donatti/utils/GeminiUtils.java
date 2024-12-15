@@ -47,7 +47,8 @@ public final class GeminiUtils
 
         new Gson().fromJson(formatarJson(response), GeminiResponseDTO.class).getLstResponse().stream()
                 .flatMap(r -> r.getData().getCandidates().stream())
-                .flatMap(candidate -> candidate.getContent().getParts().stream()).map(part -> part.getText())
+                .flatMap(candidate -> candidate.getContent().getParts().stream())
+                .map(part -> part.getText())
                 .forEach(jsonResponse::append);
  
         return jsonResponse.toString();

@@ -23,4 +23,5 @@ public class BtpPrompt extends BtpPadrao
 
     private Date proDatPrompt;
     
+    private String idUsuario;
 }

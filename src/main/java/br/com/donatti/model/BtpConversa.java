@@ -1,5 +1,7 @@
 package br.com.donatti.model;
 
+import java.util.List;
+
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import lombok.AllArgsConstructor;
@@ -23,12 +25,11 @@ public class BtpConversa extends BtpPadrao
 
     private String conFlgArquivada;
 
-    private BtpPrompt btpPompt;
-
-    private BtpResposta btpResposta;
-
-    private BtpChatEspecialista btpChatEspecialista;
-    
     private Boolean conFldArquivada;
     
+    private List<String> lstPompt;
+    
+    private List<String> lstResposta;
+    
+    private String idBotEspecialista;  
 }
